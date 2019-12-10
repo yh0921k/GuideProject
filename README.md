@@ -1,38 +1,59 @@
-# 03 - `GitHub.com`에 프로젝트 공유하기
+# 04 - 리터럴과 콘솔 출력 다루기
 
 ## 학습 목표
 
-- `.gitignore` 파일의 용도를 이해하고 작성할 수 있다.
-- `github.com`의 저장소에 프로젝트를 공유할 수 있다.
+- 다양한 유형의 값을 콘솔로 출력할 수 있다.
 
 ## 실습 소스 및 결과
 
-- ~/git/eomcs-study/.gitignore (추가)
-
-`https://github.com/사용자이름/eomcs-study` 웹 페이지에 가면 `eomcs-java-project` 프로젝트가 올라가 있는 것을 보게 된다.
+- src/main/java/com/eomcs/lms/App.java 변경
+- src/main/java/com/eomcs/lms/App2.java 추가
+- src/main/java/com/eomcs/lms/App3.java 추가
+- src/test/java/com/eomcs/lms/AppTest.java 삭제
 
 ## 실습
 
-### 작업1) Git 저장소에 보관하지 않을 파일과 디렉토리를 지정하라.
+### 작업1) 한 개의 수업 내용을 출력하라.
+
+App.java 실행 결과
 
 ```
-~/git/eomcs-study/.gitignore
+번호: 1
+수업명: 자바 프로젝트 실습
+설명: 자바 프로젝트를 통한 자바 언어 활용법 익히기
+시작일: 2019-01-02
+종료일: 2019-05-28
+총수업시간: 1000 시간
+일수업시간: 8 시간
 ```
 
-### 작업2) 추가, 변경, 삭제된 파일과 디렉토리를 Git 관리 대상에 추가하라.
+### 작업2) 한 명의 회원 정보를 출력하라.
+
+App2.java 실행 결과
 
 ```
-[~/git/eomcs-study]$ git add .
+번호: 1
+이름: 홍길동
+이메일: hong@test.com
+암호: 1111
+사진: hong.png
+전화: 1111-2222
+가입일: 2019-01-01
 ```
 
-### 작업3) 관리 대상에 등록된 파일을 로컬 Git 저장소에 보관하라.
+### 작업3) 한 개의 게시글을 출력하라.
+
+App3.java 실행 결과
 
 ```
-[~/git/eomcs-study]$ git commit -m "git 저장소에 프로젝트 보관"
+번호: 1
+내용: 게시글입니다.
+작성일: 2019-01-01
+조회수: 0
 ```
 
-### 작업4) 원격 GitHub.com 저장소에 보관하라.
+### 작업4) AppTest 클래스를 삭제하라.
 
 ```
-[~/git/eomcs-study]$ git push
+src/test/java/com/eomcs/lms/AppTest.java 삭제
 ```

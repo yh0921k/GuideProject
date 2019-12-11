@@ -1,4 +1,4 @@
-# 04 - 리터럴과 콘솔 출력 다루기
+build.gradlebuild.gradle과 콘솔 출력 다루기
 
 ## 학습 목표
 

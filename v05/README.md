@@ -68,3 +68,6 @@ App3.java 실행 결과
 작성일: 2019-01-01
 조회수: 0
 ```
+
+## 추가사항 
+java.util.Date or java.sql.Date 사용법

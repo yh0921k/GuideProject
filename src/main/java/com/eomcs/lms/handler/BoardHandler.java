@@ -1,4 +1,4 @@
-package com.eomcs.lms;
+package com.eomcs.lms.handler;
 
 import java.io.BufferedReader;
 import java.text.SimpleDateFormat;
@@ -14,9 +14,9 @@ public class BoardHandler {
   static final int BOARD_SIZE  = 100;  
   static int boardCnt  = 0;
   static Board[]  boards  = new Board[BOARD_SIZE];
-  static BufferedReader br;
+  public static BufferedReader br;
   
-  static void addBoard() throws Exception {
+  public static void addBoard() throws Exception {
     Board b = new Board();          
     System.out.printf("-----------------------------------------------------------------------------\n");
     System.out.printf("번호 : ");
@@ -28,7 +28,7 @@ public class BoardHandler {
     boards[boardCnt++] = b;
     System.out.println("\nBoard Save Complete.");
   }
-  static void printBoardList() throws Exception {
+  public static void printBoardList() throws Exception {
     System.out.printf("-----------------------------------------------------------------------------\n");
     System.out.printf("%4s%36s%4s%26s%25s%12s%6s\n", "번호", " ", "내용", " ", "작성일", " ", "조회수");
     for(int i=0; i<boardCnt; i++) { 

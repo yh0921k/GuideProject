@@ -1,4 +1,4 @@
-package com.eomcs.lms;
+package com.eomcs.lms.handler;
 
 import java.io.BufferedReader;
 import java.text.SimpleDateFormat;
@@ -18,9 +18,9 @@ public class CourseHandler {
   static final int COURSE_SIZE = 100;
   static Course[] courses = new Course[COURSE_SIZE];
   static int courseCnt = 0;   
-  static BufferedReader br;
+  public static BufferedReader br;
   
-  static void addCourse() throws Exception {
+  public static void addCourse() throws Exception {
     Course c = new Course();          
 
     System.out.printf("-----------------------------------------------------------------------------\n");
@@ -43,7 +43,7 @@ public class CourseHandler {
     courses[courseCnt++] = c;
     System.out.println("\nCourse Save Complete.");
   }
-  static void printCourseList() throws Exception {
+  public static void printCourseList() throws Exception {
     System.out.printf("-----------------------------------------------------------------------------\n");
     System.out.printf("%4s%30s%4s%30s%30s%4s%30s%15s\n", "번호", " ", "과목", " ", " ", "기간", " ", "총시간");
     for(int i=0; i<courseCnt; i++) { 

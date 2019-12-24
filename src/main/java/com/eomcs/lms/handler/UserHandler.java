@@ -1,4 +1,4 @@
-package com.eomcs.lms;
+package com.eomcs.lms.handler;
 
 import java.io.BufferedReader;
 import java.text.SimpleDateFormat;
@@ -17,9 +17,9 @@ public class UserHandler {
   static final int USER_SIZE   = 100;
   static int userCnt   = 0;
   static User[]   users   = new User[USER_SIZE];
-  static BufferedReader br;
+  public static BufferedReader br;
   
-  static void addUser() throws Exception {
+  public static void addUser() throws Exception {
     User u = new User();
 
     System.out.printf("-----------------------------------------------------------------------------\n");
@@ -40,7 +40,7 @@ public class UserHandler {
     users[userCnt++] = u;
     System.out.println("\nUser Save Complete.");
   }
-  static void printUserList() throws Exception {
+  public static void printUserList() throws Exception {
     System.out.printf("-----------------------------------------------------------------------------\n");
     System.out.printf("%4s%3s%5s%26s%5s%36s%6s\n", "번호", " ", "이름", " ", "연락처", " ", "가입일");
     for(int i=0; i<userCnt; i++) { 

@@ -25,6 +25,30 @@ public class BoardHandler {
   }
   public static void printBoardList() throws Exception {
     System.out.printf("-----------------------------------------------------------------------------\n");
+    System.out.printf("%4s%36s%4s\n", "번호", " ", "내용");
+    for(int i=0; i<boardCnt; i++) { 
+      System.out.printf("%4d%4s%20s\n", 
+          boards[i].postNum, " ", boards[i].postContent);
+    }
+  }
+  public static void printDetailBoard() throws Exception {
+    System.out.printf("번호 : ");
+    int boardNum = Integer.parseInt(br.readLine());
+    
+    Board b = null;
+    for(int i = 0; i < boardCnt; i++) {
+      if(boards[i].postNum == boardNum) {
+        b = boards[i];
+        break;
+      }
+    }
+    
+    if(b == null) {
+      System.out.println("Board Number does not exists.");
+      return;
+    }
+    
+    System.out.printf("-----------------------------------------------------------------------------\n");
     System.out.printf("%4s%36s%4s%26s%25s%12s%6s\n", "번호", " ", "내용", " ", "작성일", " ", "조회수");
     for(int i=0; i<boardCnt; i++) { 
       System.out.printf("%4d%4s%20s%10s%9s%8s\n", 

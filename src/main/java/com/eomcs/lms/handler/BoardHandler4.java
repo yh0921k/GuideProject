@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import com.eomcs.lms.domain.Board;
 
-public class BoardHandler2 { 
+public class BoardHandler4 { 
   static final int BOARD_SIZE  = 100;  
   static int boardCnt  = 0;
   static Board[]  boards  = new Board[BOARD_SIZE];

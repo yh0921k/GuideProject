@@ -6,12 +6,13 @@ import java.util.Date;
 import com.eomcs.lms.domain.Course;
 
 public class CourseHandler {
+  Course[] courses = new Course[COURSE_SIZE];
+  int courseCnt = 0;   
+  
   static final int COURSE_SIZE = 100;
-  static Course[] courses = new Course[COURSE_SIZE];
-  static int courseCnt = 0;   
   public static BufferedReader br;
   
-  public static void addCourse() throws Exception {
+  public void addCourse() throws Exception {
     Course c = new Course();          
 
     System.out.printf("-----------------------------------------------------------------------------\n");
@@ -31,17 +32,17 @@ public class CourseHandler {
     System.out.printf("하루수업시간 : ");
     c.dayHours = Integer.parseInt(br.readLine());
 
-    courses[courseCnt++] = c;
+    this.courses[this.courseCnt++] = c;
     System.out.println("\nCourse Save Complete.");
   }
-  public static void printCourseList() throws Exception {
+  public void printCourseList() throws Exception {
     System.out.printf("-----------------------------------------------------------------------------\n");
     System.out.printf("%4s%30s%4s%30s%30s%4s%30s%15s\n", "번호", " ", "과목", " ", " ", "기간", " ", "총시간");
-    for(int i=0; i<courseCnt; i++) { 
-      String start = new SimpleDateFormat("yyyy-MM-dd").format(courses[i].startDate);
-      String end   = new SimpleDateFormat("yyyy-MM-dd").format(courses[i].endDate);
+    for(int i=0; i<this.courseCnt; i++) { 
+      String start = new SimpleDateFormat("yyyy-MM-dd").format(this.courses[i].startDate);
+      String end   = new SimpleDateFormat("yyyy-MM-dd").format(this.courses[i].endDate);
       System.out.printf("%4s%5s%-29s%10s ~ %10s%12s\n", 
-          courses[i].courseNum, " ", courses[i].courseName, start, end, courses[i].totalHours);
+          this.courses[i].courseNum, " ", this.courses[i].courseName, start, end, this.courses[i].totalHours);
     }
   }
 }

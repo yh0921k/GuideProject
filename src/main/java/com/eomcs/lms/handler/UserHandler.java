@@ -3,6 +3,7 @@ package com.eomcs.lms.handler;
 import java.io.BufferedReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import com.eomcs.lms.domain.Board;
 import com.eomcs.lms.domain.User;
 import com.eomcs.util.ArrayList;
 
@@ -43,7 +44,8 @@ public class UserHandler {
     System.out.println("\nUser Save Complete.");
   }
   public void printUserList() throws Exception {
-    User[] arr = userList.toArray(User[].class);
+    User[] arr = userList.toArray(new User[this.userList.size()]);
+    arr = userList.toArray(arr);
     System.out.printf("-----------------------------------------------------------------------------\n");
     System.out.printf("%4s%3s%5s%26s%5s%36s%6s\n", "번호", " ", "이름", " ", "연락처", " ", "가입일");
     for(User u : arr) {

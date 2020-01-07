@@ -34,8 +34,16 @@ public class ArrayList<T> {
     return null;
   }
   
-  @SuppressWarnings({"unchecked", "rawtypes"})
-  public T[] toArray(Class arrayType) {
-    return (T[])Arrays.copyOf(this.list,  this.size, arrayType);
+  @SuppressWarnings("unchecked")
+  public T[] toArray(T[] arr) {
+    if (arr.length < this.size) { 
+      return (T[])Arrays.copyOf(this.list, this.size, arr.getClass());
+    }
+    System.arraycopy(this.list,  0,  arr,  0,  this.size);
+    return arr;
+  }
+  
+  public int size() {
+    return this.size;
   }
 }

@@ -33,10 +33,12 @@ public class BoardHandler {
     System.out.println("\nBoard Save Complete.");
   }
   public void printBoardList() throws Exception {
-    Board[] arr = boardList.toArray(Board[].class);
+    Board[] arr = boardList.toArray(new Board[this.boardList.size()]);
     System.out.printf("-----------------------------------------------------------------------------\n");
     System.out.printf("%4s%36s%4s\n", "번호", " ", "내용");
     for(Board b : arr) { 
+      if (b == null)
+        break;
       System.out.printf("%4d%4s%20s\n", 
           b.getPostNum(), " ", b.getPostContent());
     }

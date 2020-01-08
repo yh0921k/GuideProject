@@ -12,7 +12,6 @@ public class App {
     CourseHandler courseHandler = new CourseHandler(br);
     UserHandler userHandler = new UserHandler(br);
     BoardHandler boardHandler = new BoardHandler(br);    
-
     String command;
     
     do {
@@ -25,23 +24,41 @@ public class App {
           courseHandler.addCourse();
           break;
         case "/course/list":
-          courseHandler.printCourseList();
+          courseHandler.listCourse();
           break;
+        case "/course/update":
+          courseHandler.updateCourse();
+          break;
+        case "/course/delete":
+          courseHandler.deleteCourse();
+          break;  
         case "/user/add":
           userHandler.addUser();
           break;
         case "/user/list":
-          userHandler.printUserList();
+          userHandler.listUser();
           break;
+        case "/user/update":
+          userHandler.updateUser();
+          break;
+        case "/user/delete":
+          userHandler.deleteUser();
+          break;  
         case "/board/add":
           boardHandler.addBoard();
           break;
         case "/board/list":
-          boardHandler.printBoardList();
+          boardHandler.listBoard();
           break;
         case "/board/detail":
-          boardHandler.printDetailBoard();
+          boardHandler.datailBoard();
           break;        
+        case "/board/update":
+          boardHandler.updateBoard();
+          break;
+        case "/board/delete":
+          boardHandler.deleteBoard();
+          break;  
         default:
           if (!command.equalsIgnoreCase("quit"))
             System.out.printf("Incorrect Command\n");

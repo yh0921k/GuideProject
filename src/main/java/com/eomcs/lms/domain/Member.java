@@ -2,7 +2,7 @@ package com.eomcs.lms.domain;
 
 import java.util.Date;
 
-public class User {
+public class Member {
   private int    personNum;
   private String personName;
   private String phoneNum;

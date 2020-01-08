@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class ArrayList<T> {
   private static final int DEFAULT_CAPACITY  = 2;  
-  private Object[] list;
+  private Object[] list; // List list
   private int size;
     
   public ArrayList() {
@@ -43,7 +43,33 @@ public class ArrayList<T> {
     return arr;
   }
   
+  @SuppressWarnings("unchecked")
+  public T set(int index, T obj) {
+    if(index < 0 || index >= this.size)
+      return null;
+    
+    T old = (T)this.list[index];
+    this.list[index] = obj;
+    return old;
+  }
+  
+  @SuppressWarnings("unchecked")
+  public T remove(int index) {
+    if(index < 0 || index >= this.size)
+      return null;
+    
+    T old = (T) this.list[index];
+    for(int i = index + 1; i < this.size; i++)
+      this.list[i-1] = this.list[i];
+    
+    this.size--;
+    this.list[this.size]= null; 
+    return old;
+  }   
+  
   public int size() {
     return this.size;
   }
 }
+
+

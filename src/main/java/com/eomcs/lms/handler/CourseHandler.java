@@ -3,6 +3,7 @@ package com.eomcs.lms.handler;
 import java.io.BufferedReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import com.eomcs.lms.domain.Board;
 import com.eomcs.lms.domain.Course;
 import com.eomcs.lms.domain.Course;
 import com.eomcs.util.ArrayList;
@@ -55,6 +56,23 @@ public class CourseHandler {
       System.out.printf("%4s%5s%-29s%10s ~ %10s%12s\n", 
           c.getCourseNum(), " ", c.getCourseName(), start, end, c.getTotalHours());
     }
+  }
+  
+  public void detailCourse() throws Exception {
+    System.out.printf("Index : ");
+    int index = Integer.parseInt(br.readLine());
+    Course course = courseList.get(index);
+
+    
+    if(course == null) {
+      System.out.println("Course does not exists.");
+      return;
+    }
+    System.out.printf("-----------------------------------------------------------------------------\n");
+    System.out.printf("%4s%36s%4s%26s%25s%12s%6s\n", "번호", " ", "내용", " ", "작성일", " ", "조회수");
+    System.out.printf("%4d%4s%20s%10s%9s%8s\n", 
+        board.getPostNum(), " ", board.getPostContent(), " ", 
+          new SimpleDateFormat("yyyy-MM-dd").format(board.getWriteDay()), board.getViewCount());
   }
   
   public void updateCourse() throws Exception {

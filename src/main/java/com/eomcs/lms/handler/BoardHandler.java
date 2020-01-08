@@ -62,6 +62,11 @@ public class BoardHandler {
       }
     }
     
+    // 위에서 아래로 변환 -- 업데이트와 delete도 동일하게, 
+    int index = indexOfBoard(no);
+    if(index == -1); // 게시글 없음
+    
+    
     Board board = boardList.get(index);
     if(board == null) {
       System.out.println("Board Number does not exists.");

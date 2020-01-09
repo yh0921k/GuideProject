@@ -7,11 +7,11 @@
 ## 실습 소스 및 결과
 
 - src/main/java/com/eomcs/util/ArrayList.java 변경
-- src/main/java/com/eomcs/lms/handler/CourseHandler.java 변경
-- src/main/java/com/eomcs/lms/handler/UserHandler.java 변경
+- src/main/java/com/eomcs/lms/handler/LessonHandler.java 변경
+- src/main/java/com/eomcs/lms/handler/MemberHandler.java 변경
 - src/main/java/com/eomcs/lms/handler/BoardHandler.java 변경
-- src/main/java/com/eomcs/lms/domain/Course.java 변경
-- src/main/java/com/eomcs/lms/domain/User.java 변경
+- src/main/java/com/eomcs/lms/domain/Lesson.java 변경
+- src/main/java/com/eomcs/lms/domain/Member.java 변경
 - src/main/java/com/eomcs/lms/domain/Board.java 변경
 - src/main/java/com/eomcs/lms/App.java 변경
 
@@ -27,23 +27,23 @@
 
 ### 작업2) 수업 데이터의 상세조회, 변경, 삭제 기능을 추가하라.
 
-- CourseHandler.java (CourseHandler.java.01)
-  - 상세조회 기능을 수행하는 detailCourse()을 정의한다.
-  - 변경 기능을 수행하는 updateCourse()을 정의한다.
-  - 삭제 기능을 수행하는 deleteCourse()을 정의한다.
+- LessonHandler.java (LessonHandler.java.01)
+  - 상세조회 기능을 수행하는 detailLesson()을 정의한다.
+  - 변경 기능을 수행하는 updateLesson()을 정의한다.
+  - 삭제 기능을 수행하는 deleteLesson()을 정의한다.
 - App.java
   - 상세조회, 변경, 삭제 명령에 대한 분기문을 추가한다.
 
 #### 실행 결과
 
 ```
-명령> /Course/list
+명령> /lesson/list
 1, 자바 프로젝트 실습     , 2019-01-02 ~ 2019-05-28, 1000
 2, 자바 프로그래밍 기초    , 2019-02-01 ~ 2019-02-28,  160
 3, 자바 프로그래밍 고급    , 2019-03-02 ~ 2019-03-30,  160
 4, 서블릿/JSP 프로그래밍   , 2019-04-02 ~ 2019-05-30,  150
 
-명령> /Course/detail
+명령> /lesson/detail
 번호? 2
 수업명: 자바 프로젝트 실습
 수업내용: 자바 프로젝트를 통한 자바 언어 활용법 익히기
@@ -51,11 +51,11 @@
 총수업시간: 1000
 일수업시간: 8
 
-명령> /Course/detail
+명령> /lesson/detail
 번호? 20
 해당 수업을 찾을 수 없습니다.
 
-명령> /Course/update
+명령> /lesson/update
 번호? 2
 수업명(자바 프로젝트 실습)? 자바 프로젝트 단계별 실습
 수업내용?  <=== 입력하지 않으면 기존 값 사용
@@ -65,36 +65,36 @@
 일수업시간(8)?
 수업을 변경했습니다.
 
-명령> /Course/update
+명령> /lesson/update
 번호? 20
 해당 수업을 찾을 수 없습니다.
 
-명령> /Course/delete
+명령> /lesson/delete
 번호? 2
 수업을 삭제했습니다.
 
-명령> /Course/delete
+명령> /lesson/delete
 번호? 20
 해당 수업을 찾을 수 없습니다.
 ```
 
-### 작업3) CourseHandler 코드를 리팩토링하라.
+### 작업3) LessonHandler 코드를 리팩토링하라.
 
-- CourseHandler.java
-    - 저장된 목록에서 수업 번호로 항목을 찾는 코드를 indexOfCourse() 메서드로 분리한다.
-- Course.java
+- LessonHandler.java
+    - 저장된 목록에서 수업 번호로 항목을 찾는 코드를 indexOfLesson() 메서드로 분리한다.
+- Lesson.java
     - 인스턴스 복제를 할 수 있도록 java.lang.Cloneable 인터페이스를 구현한다.
     - clone()을 오버라이딩 한다.
 
 
 ### 작업4) 회원 데이터의 상세조회, 변경, 삭제 기능을 추가하라.
 
-- UserHandler.java
-    - 상세조회 기능을 수행하는 detailUser()을 정의한다.
-    - 변경 기능을 수행하는 updateUser()을 정의한다.
-    - 삭제 기능을 수행하는 deleteUser()을 정의한다.
-    - 저장된 목록에서 회원 번호로 항목을 찾는 indexOfUser()를 정의한다.
-- User.java
+- MemberHandler.java
+    - 상세조회 기능을 수행하는 detailMember()을 정의한다.
+    - 변경 기능을 수행하는 updateMember()을 정의한다.
+    - 삭제 기능을 수행하는 deleteMember()을 정의한다.
+    - 저장된 목록에서 회원 번호로 항목을 찾는 indexOfMember()를 정의한다.
+- Member.java
     - 인스턴스 복제를 할 수 있도록 java.lang.Cloneable 인터페이스를 구현한다.
     - clone()을 오버라이딩 한다.
 - App.java
@@ -103,12 +103,12 @@
 #### 실행 결과
 
 ```
-명령> /User/list
+명령> /member/list
 1, 홍길동 , hong@test.com       , 1111-2222      , 2019-01-01
 2, 임꺽정 , lim@test.com        , 1111-2223      , 2019-01-01
 3, 전봉준 , jeon@test.com       , 1111-2224      , 2019-01-01
 
-명령> /User/detail
+명령> /member/detail
 번호? 2
 이름: 홍길동
 이메일: hong@test.com
@@ -117,11 +117,11 @@
 전화: 1111-2222
 가입일: 2019-01-01
 
-명령> /User/detail
+명령> /member/detail
 번호? 20
 해당 학생을 찾을 수 없습니다.
 
-명령> /User/update
+명령> /member/update
 번호? 1
 이름(홍길동)?     <=== 입력하지 않으면 기존 값 사용
 이메일(hong@test.com)?
@@ -130,15 +130,15 @@
 전화(1111-2222)?
 회원을 변경했습니다.
 
-명령> /User/update
+명령> /member/update
 번호? 20
 해당 회원을 찾을 수 없습니다.
 
-명령> /User/delete
+명령> /member/delete
 번호? 2
 회원을 삭제했습니다.
 
-명령> /User/delete
+명령> /member/delete
 번호? 20
 해당 회원을 찾을 수 없습니다.
 ```

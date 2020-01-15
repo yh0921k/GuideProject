@@ -5,19 +5,18 @@ package com.eomcs.lms.handler;
 
 import java.sql.Date;
 import com.eomcs.lms.domain.Board;
-import com.eomcs.util.LinkedList;
-import com.eomcs.util.AbstractList;
+import com.eomcs.util.List;
 import com.eomcs.util.Prompt;
 
 public class BoardHandler {
   
   // ArrayList 또는 LinkedList를 구분하지 않고 사용할 수 있어야함
   // List 타입을 사용하는 대신, 실제 인스턴스의 타입은 생성자에서 파라미터로 처리한다.
-  AbstractList<Board> boardList;
+  List<Board> boardList;
   
   Prompt prompt;
   
-  public BoardHandler(Prompt prompt, AbstractList<Board> list) {
+  public BoardHandler(Prompt prompt, List<Board> list) {
     this.prompt = prompt;
     this.boardList = list;
   }

@@ -1,16 +1,16 @@
 package com.eomcs.lms.handler;
 
 import com.eomcs.lms.domain.Lesson;
-import com.eomcs.util.AbstractList;
+import com.eomcs.util.List;
 import com.eomcs.util.Prompt;
 
 public class LessonHandler {
   
-  AbstractList<Lesson> lessonList;
+  List<Lesson> lessonList;
   
   Prompt prompt;
   
-  public LessonHandler(Prompt prompt, AbstractList<Lesson> list) {
+  public LessonHandler(Prompt prompt, List<Lesson> list) {
     this.prompt = prompt;
     this.lessonList = list;
   }

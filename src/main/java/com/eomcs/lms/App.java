@@ -42,9 +42,9 @@ public class App {
   static Scanner keyboard = new Scanner(System.in);
   static Deque<String> commandStack = new ArrayDeque<>();
   static Queue<String> commandQueue = new LinkedList<>();
-  static List<Board> boardList;
-  static List<Lesson> lessonList;
-  static List<Member> memberList;
+  static List<Board> boardList = new LinkedList<>();
+  static List<Lesson> lessonList = new LinkedList<>();
+  static List<Member> memberList = new LinkedList<>();
 
   public static void main(String[] args) {
 
@@ -134,7 +134,7 @@ public class App {
   private static void loadLessonData() {
     File file = new File("./lesson.json");
     try (FileReader in = new FileReader(file)) {
-      lessonList = new LinkedList<>(Arrays.asList(new Gson().fromJson(in, Lesson[].class)));
+      lessonList.addAll(Arrays.asList(new Gson().fromJson(in, Lesson[].class)));
       System.out.printf("%d 개의 수업 데이터를 로딩했습니다.\n", lessonList.size());
     } catch (IOException e) {
       System.out.println("파일 읽기 중 오류 발생 : " + e.getMessage());
@@ -154,7 +154,7 @@ public class App {
   private static void loadMemberData() {
     File file = new File("./member.json");
     try (FileReader in = new FileReader(file)) {
-      memberList = new LinkedList<>(Arrays.asList(new Gson().fromJson(in, Member[].class)));
+      memberList.addAll(Arrays.asList(new Gson().fromJson(in, Member[].class)));
       System.out.printf("%d 개의 유저 데이터를 로딩했습니다.\n", memberList.size());
     } catch (IOException e) {
       System.out.println("파일 읽기 중 오류 발생 : " + e.getMessage());
@@ -174,7 +174,7 @@ public class App {
   private static void loadBoardData() {
     File file = new File("./board.json");
     try (FileReader in = new FileReader(file)) {
-      boardList = new LinkedList<>(Arrays.asList(new Gson().fromJson(in, Board[].class)));
+      boardList.addAll(Arrays.asList(new Gson().fromJson(in, Board[].class)));
       System.out.printf("%d 개의 게시글 데이터를 로딩했습니다.\n", boardList.size());
     } catch (IOException e) {
       System.out.println("파일 읽기 중 오류 발생 : " + e.getMessage());

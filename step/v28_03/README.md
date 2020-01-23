@@ -48,6 +48,7 @@
 ### 훈련 5 : Arrays의 메서드를 활용하여 배열을 List 객체로 만든다.
 - App.java
   - 현재 코드는 객체 배열에서 객체를 하나씩 빼내 XXXList에 add() 하는 방식으로 구성되어 있다.
+
   ```java
   // loadBoardData() 예시
   Board[] boards = new Gson().fromJson(in, Board[].class);
@@ -56,6 +57,7 @@
         boardList.add(board);
       }
   ```
+  
   - 해당 부분의 코드를 변경한다.
 
 #### 추가사항

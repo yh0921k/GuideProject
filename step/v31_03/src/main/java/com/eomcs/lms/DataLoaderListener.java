@@ -10,6 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import com.eomcs.lms.context.ApplicationContextListener;
 import com.eomcs.lms.domain.Board;
 import com.eomcs.lms.domain.Lesson;
@@ -22,23 +23,26 @@ public class DataLoaderListener implements ApplicationContextListener {
   List<Member> memberList = new LinkedList<>();
 
   @Override
-  public void contextInitialized() {
+  public void contextInitialized(Map<String, Object> context) {
     System.out.println("데이터를 로딩합니다.");
-    
+
     loadLessonData();
     loadMemberData();
     loadBoardData();
+
+    context.put("boardList", boardList);
+    context.put("lessonList", lessonList);
+    context.put("memberList", memberList);
   }
 
   @Override
-  public void contextDestroyed() {
+  public void contextDestroyed(Map<String, Object> context) {
     System.out.println("데이터를 저장합니다.");
-    
+
     saveLessonData();
     saveMemberData();
     saveBoardData();
   }
-
 
   @SuppressWarnings("unchecked")
   private void loadLessonData() {

@@ -3,8 +3,8 @@ package com.eomcs.lms;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +41,7 @@ public class App {
   Deque<String> commandStack = new ArrayDeque<>();
   Queue<String> commandQueue = new LinkedList<>();
 
-  Set<ApplicationContextListener> listeners = new HashSet<>();
+  Set<ApplicationContextListener> listeners = new LinkedHashSet<>();
   Map<String, Object> context = new HashMap<>();
 
   public void addApplicationContextListener(ApplicationContextListener listener) {
@@ -152,6 +152,7 @@ public class App {
   public static void main(String[] args) {
     App app = new App();
     app.addApplicationContextListener(new DataLoaderListener());
+    app.addApplicationContextListener(new GreetingListener());
     app.service();
   }
 }

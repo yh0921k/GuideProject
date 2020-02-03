@@ -46,7 +46,7 @@ public class DataLoaderListener implements ApplicationContextListener {
 
   @SuppressWarnings("unchecked")
   private void loadLessonData() {
-    File file = new File("./lesson.ser2");
+    File file = new File("./data/lesson.ser2");
     try (ObjectInputStream in =
         new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)))) {
       lessonList = (List<Lesson>) in.readObject();
@@ -57,7 +57,7 @@ public class DataLoaderListener implements ApplicationContextListener {
   }
 
   private void saveLessonData() {
-    File file = new File("./lesson.ser2");
+    File file = new File("./data/lesson.ser2");
     try (ObjectOutputStream out =
         new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)))) {
       out.writeObject(lessonList);
@@ -69,7 +69,7 @@ public class DataLoaderListener implements ApplicationContextListener {
 
   @SuppressWarnings("unchecked")
   private void loadMemberData() {
-    File file = new File("./member.ser2");
+    File file = new File("./data/member.ser2");
     try (ObjectInputStream in =
         new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)))) {
       memberList = (List<Member>) in.readObject();
@@ -80,7 +80,7 @@ public class DataLoaderListener implements ApplicationContextListener {
   }
 
   private void saveMemberData() {
-    File file = new File("./member.ser2");
+    File file = new File("./data/member.ser2");
     try (ObjectOutputStream out =
         new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)))) {
       out.writeObject(memberList);
@@ -92,7 +92,7 @@ public class DataLoaderListener implements ApplicationContextListener {
 
   @SuppressWarnings("unchecked")
   private void loadBoardData() {
-    File file = new File("./board.ser2");
+    File file = new File("./data/board.ser2");
     try (ObjectInputStream in =
         new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)))) {
       boardList = (List<Board>) in.readObject();
@@ -103,7 +103,7 @@ public class DataLoaderListener implements ApplicationContextListener {
   }
 
   private void saveBoardData() {
-    File file = new File("./board.ser2");
+    File file = new File("./data/board.ser2");
     try (ObjectOutputStream out =
         new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)))) {
       out.writeObject(boardList);

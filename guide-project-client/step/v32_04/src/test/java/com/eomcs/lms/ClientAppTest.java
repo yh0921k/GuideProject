@@ -5,10 +5,10 @@ package com.eomcs.lms;
 
 import org.junit.Test;
 
-public class ServerAppTest {
+public class ClientAppTest {
   @Test
-  public void testBoardList() {
-    // ServerApp classUnderTest = new ServerApp();
+  public void testAppHasAGreeting() {
+    // ClientApp classUnderTest = new ClientApp();
     // assertNotNull("app should have a greeting", classUnderTest.getGreeting());
   }
 }

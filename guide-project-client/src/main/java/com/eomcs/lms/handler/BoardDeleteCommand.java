@@ -27,7 +27,7 @@ public class BoardDeleteCommand implements Command {
 
       String response = in.readUTF();
 
-      if (response.equals("fail")) {
+      if (response.equals("FAIL")) {
         System.out.println(in.readUTF());
         return;
       }

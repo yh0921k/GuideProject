@@ -13,8 +13,8 @@
 
 ### 실습 1 : Command 패턴의 인터페이스 정의 
 
-- com.eomcs.servlet 패키지를 생성한다
-- com.eomcs.servlet.Servlet 인터페이스를 정의한다.
+- com.eomcs.lms.servlet 패키지를 생성한다
+- com.eomcs.lms.servlet.Servlet 인터페이스를 정의한다.
 
 ### 실습 2 : 각각의 요청 처리 메서드를 인터페이스 규칙에 따라 클래스로 정의한다.
 

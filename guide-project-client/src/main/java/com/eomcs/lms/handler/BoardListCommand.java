@@ -23,7 +23,7 @@ public class BoardListCommand implements Command {
       out.writeUTF("/board/list");
       out.flush();
       String response = in.readUTF();
-      if (response.equals("fail")) {
+      if (response.equals("FAIL")) {
         System.out.println(in.readUTF());
         return;
       }

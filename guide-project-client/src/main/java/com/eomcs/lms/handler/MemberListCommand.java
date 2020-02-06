@@ -22,7 +22,7 @@ public class MemberListCommand implements Command {
       out.writeUTF("/member/list");
       out.flush();
       String response = in.readUTF();
-      if (response.equals("fail")) {
+      if (response.equals("FAIL")) {
         System.out.println(in.readUTF());
         return;
       }

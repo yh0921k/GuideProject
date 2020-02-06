@@ -24,7 +24,7 @@ public class MemberDetailCommand implements Command {
       out.writeInt(prompt.inputInt("번호 : "));
       out.flush();
       String response = in.readUTF();
-      if (response.equals("fail")) {
+      if (response.equals("FAIL")) {
         System.out.println(in.readUTF());
         return;
       }

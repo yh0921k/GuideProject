@@ -27,7 +27,7 @@ public class BoardUpdateCommand implements Command {
       out.flush();
 
       String response = in.readUTF();
-      if (response.equals("fail")) {
+      if (response.equals("FAIL")) {
         System.out.println(in.readUTF());
         return;
       }
@@ -50,7 +50,7 @@ public class BoardUpdateCommand implements Command {
       out.writeObject(newBoard);
       out.flush();
       response = in.readUTF();
-      if (response.equals("fail")) {
+      if (response.equals("FAIL")) {
         System.out.println(in.readUTF());
         return;
       }

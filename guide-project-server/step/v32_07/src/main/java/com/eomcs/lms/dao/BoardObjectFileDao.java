@@ -10,13 +10,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import com.eomcs.lms.domain.Member;
+import com.eomcs.lms.domain.Board;
 
-public class MemberFileDao {
+public class BoardObjectFileDao {
   String filename;
-  List<Member> list;
+  List<Board> list;
 
-  public MemberFileDao(String filename) {
+  public BoardObjectFileDao(String filename) {
     list = new ArrayList<>();
     this.filename = filename;
     loadData();
@@ -24,54 +24,55 @@ public class MemberFileDao {
 
   @SuppressWarnings("unchecked")
   private void loadData() {
-    File file = new File("./data/member.ser2");
+    File file = new File(filename);
     try (ObjectInputStream in =
         new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)))) {
-      list = (List<Member>) in.readObject();
-      System.out.printf("%d 개의 유저 데이터를 로딩했습니다.\n", list.size());
+      list = (List<Board>) in.readObject();
+      System.out.printf("%d 개의 게시글 데이터를 로딩했습니다.\n", list.size());
     } catch (Exception e) {
       System.out.println("파일 읽기 중 오류 발생 : " + e.getMessage());
     }
   }
 
   private void saveData() {
-    File file = new File("./data/member.ser2");
+    File file = new File(filename);
     try (ObjectOutputStream out =
         new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)))) {
+      out.reset();
       out.writeObject(list);
-      System.out.printf("%d 개의 유저 데이터를 저장했습니다.\n", list.size());
+      System.out.printf("%d 개의 게시글 데이터를 저장했습니다.\n", list.size());
     } catch (IOException e) {
       System.out.println("파일 쓰기 중에 오류가 발생했습니다." + e.getMessage());
     }
   }
 
-  public int insert(Member member) throws Exception {
-    if (indexOf(member.getNo()) > -1) {
+  public int insert(Board board) throws Exception {
+    if (indexOf(board.getNo()) > -1) {
       return 0;
     }
 
-    list.add(member);
+    list.add(board);
     saveData();
     return 1;
   }
 
-  public List<Member> findAll() throws Exception {
+  public List<Board> findAll() throws Exception {
     return list;
   }
 
-  public Member findByNo(int no) throws Exception {
+  public Board findByNo(int no) throws Exception {
     int index = indexOf(no);
     if (index == -1)
       return null;
     return list.get(index);
   }
 
-  public int update(Member member) throws Exception {
-    int index = indexOf(member.getNo());
+  public int update(Board board) throws Exception {
+    int index = indexOf(board.getNo());
     if (index == -1)
       return 0;
 
-    list.set(index, member);
+    list.set(index, board);
     saveData();
     return 1;
   }

@@ -2,9 +2,9 @@ package com.eomcs.lms;
 
 import java.util.Map;
 import com.eomcs.lms.context.ApplicationContextListener;
-import com.eomcs.lms.dao.BoardFileDao;
-import com.eomcs.lms.dao.LessonFileDao;
-import com.eomcs.lms.dao.MemberFileDao;
+import com.eomcs.lms.dao.BoardObjectFileDao;
+import com.eomcs.lms.dao.LessonObjectFileDao;
+import com.eomcs.lms.dao.MemberObjectFileDao;
 
 public class DataLoaderListener implements ApplicationContextListener {
 
@@ -12,9 +12,9 @@ public class DataLoaderListener implements ApplicationContextListener {
   public void contextInitialized(Map<String, Object> context) {
     System.out.println("데이터를 로딩합니다.");
 
-    BoardFileDao boardDao = new BoardFileDao("./data/board.ser2");
-    LessonFileDao lessonDao = new LessonFileDao("./data/lesson.ser2");
-    MemberFileDao memberDao = new MemberFileDao("./data/member.ser2");
+    BoardObjectFileDao boardDao = new BoardObjectFileDao("./data/board.ser2");
+    LessonObjectFileDao lessonDao = new LessonObjectFileDao("./data/lesson.ser2");
+    MemberObjectFileDao memberDao = new MemberObjectFileDao("./data/member.ser2");
 
     context.put("boardDao", boardDao);
     context.put("lessonDao", lessonDao);

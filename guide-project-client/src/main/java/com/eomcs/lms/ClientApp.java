@@ -39,8 +39,14 @@ public class ClientApp {
     String serverAddr = null;
     int port = 0;
     try {
-      serverAddr = prompt.inputString("서버 IP : ");
-      port = prompt.inputInt("Port : ");
+      if ((serverAddr = prompt.inputString("서버 IP(enter) : ")).equals("")) {
+        serverAddr = "127.0.0.1";
+      }
+      try {
+        port = prompt.inputInt("Port(enter) : ");
+      } catch (Exception e) {
+        port = 12345;
+      }
 
     } catch (Exception e) {
       System.out.println("Invalid Address or Port");

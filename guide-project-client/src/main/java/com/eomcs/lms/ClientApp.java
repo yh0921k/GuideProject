@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 import com.eomcs.lms.dao.proxy.BoardDaoProxy;
+import com.eomcs.lms.dao.proxy.DaoProxyHelper;
 import com.eomcs.lms.dao.proxy.LessonDaoProxy;
 import com.eomcs.lms.dao.proxy.MemberDaoProxy;
 import com.eomcs.lms.handler.BoardAddCommand;
@@ -66,9 +67,10 @@ public class ClientApp {
       return;
     }
 
-    BoardDaoProxy boardDao = new BoardDaoProxy(host, port);
-    LessonDaoProxy lessonDao = new LessonDaoProxy(host, port);
-    MemberDaoProxy memberDao = new MemberDaoProxy(host, port);
+    DaoProxyHelper daoProxyHelper = new DaoProxyHelper(host, port);
+    BoardDaoProxy boardDao = new BoardDaoProxy(daoProxyHelper);
+    LessonDaoProxy lessonDao = new LessonDaoProxy(daoProxyHelper);
+    MemberDaoProxy memberDao = new MemberDaoProxy(daoProxyHelper);
 
     commandMap.put("/board/list", new BoardListCommand(boardDao));
     commandMap.put("/board/add", new BoardAddCommand(boardDao, prompt));

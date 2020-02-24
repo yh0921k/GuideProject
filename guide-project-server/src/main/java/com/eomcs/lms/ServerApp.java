@@ -16,6 +16,7 @@ import com.eomcs.lms.context.ApplicationContextListener;
 import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.dao.MemberDao;
+import com.eomcs.lms.dao.PhotoBoardDao;
 import com.eomcs.lms.dao.mariadb.BoardDaoImpl;
 import com.eomcs.lms.dao.mariadb.LessonDaoImpl;
 import com.eomcs.lms.dao.mariadb.MemberDaoImpl;
@@ -35,6 +36,11 @@ import com.eomcs.lms.servlet.MemberDetailServlet;
 import com.eomcs.lms.servlet.MemberListServlet;
 import com.eomcs.lms.servlet.MemberSearchServlet;
 import com.eomcs.lms.servlet.MemberUpdateServlet;
+import com.eomcs.lms.servlet.PhotoBoardAddServlet;
+import com.eomcs.lms.servlet.PhotoBoardDeleteServlet;
+import com.eomcs.lms.servlet.PhotoBoardDetailServlet;
+import com.eomcs.lms.servlet.PhotoBoardListServlet;
+import com.eomcs.lms.servlet.PhotoBoardUpdateServlet;
 import com.eomcs.lms.servlet.Servlet;
 
 public class ServerApp {
@@ -72,6 +78,7 @@ public class ServerApp {
     BoardDao boardDao = (BoardDaoImpl) context.get("boardDao");
     LessonDao lessonDao = (LessonDaoImpl) context.get("lessonDao");
     MemberDao memberDao = (MemberDaoImpl) context.get("memberDao");
+    PhotoBoardDao photoBoardDao = (PhotoBoardDao) context.get("photoBoardDao");
 
     servletMap.put("/board/list", new BoardListServlet(boardDao));
     servletMap.put("/board/add", new BoardAddServlet(boardDao));
@@ -91,6 +98,12 @@ public class ServerApp {
     servletMap.put("/member/update", new MemberUpdateServlet(memberDao));
     servletMap.put("/member/delete", new MemberDeleteServlet(memberDao));
     servletMap.put("/member/search", new MemberSearchServlet(memberDao));
+
+    servletMap.put("/photoboard/list", new PhotoBoardListServlet(photoBoardDao, lessonDao));
+    servletMap.put("/photoboard/detail", new PhotoBoardDetailServlet(photoBoardDao));
+    servletMap.put("/photoboard/add", new PhotoBoardAddServlet(photoBoardDao));
+    servletMap.put("/photoboard/update", new PhotoBoardUpdateServlet(photoBoardDao));
+    servletMap.put("/photoboard/delete", new PhotoBoardDeleteServlet(photoBoardDao));
 
     try (ServerSocket serverSocket = new ServerSocket(12345)) {
       System.out.println("wait to connect with client...");

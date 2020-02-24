@@ -1,4 +1,4 @@
-# 37_3 - Application Server 구조로 변경: 검색 기능 추가
+# 37_4 - Application Server 구조로 변경: 검색 기능 추가
 
 ## 학습목표
 

@@ -11,6 +11,8 @@ import com.eomcs.lms.domain.Lesson;
 import com.eomcs.lms.domain.PhotoBoard;
 import com.eomcs.lms.domain.PhotoFile;
 import com.eomcs.sql.PlatformTransactionManager;
+import com.eomcs.sql.TransactionCallback;
+import com.eomcs.sql.TransactionTemplate;
 import com.eomcs.util.Prompt;
 
 public class PhotoBoardAddServlet implements Servlet {
@@ -19,14 +21,14 @@ public class PhotoBoardAddServlet implements Servlet {
   PhotoBoardDao photoBoardDao;
   LessonDao lessonDao;
   PhotoFileDao photoFileDao;
-  PlatformTransactionManager txManager;
+  TransactionTemplate transactionTemplate;
 
   public PhotoBoardAddServlet(PhotoBoardDao photoBoardDao, LessonDao lessonDao,
       PhotoFileDao photoFileDao, PlatformTransactionManager txManager) {
     this.photoBoardDao = photoBoardDao;
     this.lessonDao = lessonDao;
     this.photoFileDao = photoFileDao;
-    this.txManager = txManager;
+    this.transactionTemplate = new TransactionTemplate(txManager);
   }
 
   @Override
@@ -41,24 +43,22 @@ public class PhotoBoardAddServlet implements Servlet {
       return;
     }
     photoBoard.setLesson(lesson);
+    List<PhotoFile> photoFiles = inputPhotoFiles(in, out);
 
-    txManager.beginTransaction();
-    try {
-      if (photoBoardDao.insert(photoBoard) == 0) {
-        throw new Exception("사진 게시글 등록에 실패했습니다.");
+    transactionTemplate.execute(new TransactionCallback() {
+      @Override
+      public Object doInTransaction() throws Exception {
+        if (photoBoardDao.insert(photoBoard) == 0) {
+          throw new Exception("사진 게시글 등록에 실패했습니다.");
+        }
+        for (PhotoFile photoFile : photoFiles) {
+          photoFile.setBoardNo(photoBoard.getNo());
+          photoFileDao.insert(photoFile);
+        }
+        out.println("새 게시글을 등록했습니다.");
+        return null;
       }
-      List<PhotoFile> photoFiles = inputPhotoFiles(in, out);
-      for (PhotoFile photoFile : photoFiles) {
-        photoFile.setBoardNo(photoBoard.getNo());
-        photoFileDao.insert(photoFile);
-      }
-      txManager.commit();
-      out.println("새 게시글을 등록했습니다.");
-
-    } catch (Exception e) {
-      txManager.rollback();
-      out.println(e.getMessage());
-    }
+    });
   }
 
   private List<PhotoFile> inputPhotoFiles(Scanner in, PrintStream out) {

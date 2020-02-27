@@ -9,19 +9,20 @@ import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.domain.PhotoBoard;
 import com.eomcs.lms.domain.PhotoFile;
 import com.eomcs.sql.PlatformTransactionManager;
+import com.eomcs.sql.TransactionTemplate;
 import com.eomcs.util.Prompt;
 
 public class PhotoBoardUpdateServlet implements Servlet {
 
   PhotoBoardDao photoBoardDao;
   PhotoFileDao photoFileDao;
-  PlatformTransactionManager txManager;
+  TransactionTemplate transactionTemplate;
 
   public PhotoBoardUpdateServlet(PhotoBoardDao photoBoardDao, PhotoFileDao photoFileDao,
       PlatformTransactionManager txManager) {
     this.photoBoardDao = photoBoardDao;
     this.photoFileDao = photoFileDao;
-    this.txManager = txManager;
+    this.transactionTemplate = new TransactionTemplate(txManager);
   }
 
   @Override
@@ -40,8 +41,8 @@ public class PhotoBoardUpdateServlet implements Servlet {
     newPhotoBoard.setTitle(
         Prompt.getString(in, out, String.format("제목(%s) : ", old.getTitle()), old.getTitle()));
 
-    txManager.beginTransaction();
-    try {
+
+    transactionTemplate.execute(() -> {
       if (photoBoardDao.update(newPhotoBoard) == 0) {
         throw new Exception("사진 게시글 변경에 실패했습니다.");
       }
@@ -60,12 +61,9 @@ public class PhotoBoardUpdateServlet implements Servlet {
           photoFileDao.insert(photoFile);
         }
       }
-      txManager.commit();
       out.println("사진 게시글을 변경했습니다.");
-    } catch (Exception e) {
-      txManager.rollback();
-      out.println(e.getMessage());
-    }
+      return null;
+    });
   }
 
   private void printPhotoFiles(PrintStream out, int boardNo) throws Exception {

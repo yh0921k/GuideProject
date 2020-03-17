@@ -3,7 +3,7 @@ package com.eomcs.util;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/// 클래스 이름을 지정할 때 붙일 애노테이션을 정의한다.
+// 클래스 이름을 지정할 때 붙일 애노테이션을 정의한다.
 // => 컴파일 한 후에도 .class 파일에 이 애노테이션 정보를 유지하게 한다.
 // => JVM에서 이 애노테이션 정보를 꺼낼 수 있도록 허락한다.
 @Retention(RetentionPolicy.RUNTIME)

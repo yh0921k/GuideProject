@@ -33,9 +33,12 @@ public class Prompt {
     out.println("!{}!");
     out.flush();
     String value = in.nextLine();
-    if (value.length() != 0)
+
+    if (value.length() != 0) {
       return value;
-    return defaultValue;
+    } else {
+      return defaultValue;
+    }
   }
 
   public static Date getDate(Scanner in, PrintStream out, String title) {

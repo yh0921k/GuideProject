@@ -9,10 +9,17 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 // Spring IoC 컨테이너가 이 클래스를 JavaConfig로 자동 인식하게 하려면 아래와 같이 사용
 // 단, 이 클래스가 @ComponentScan에서 지정한 패키지 안에 있어야 한다.
 @Configuration
+
+// @Transactional이 붙은 메서드가 있을 경우
+// 트랜잭션 제어 코드가 삽입된 프록시 객체를 자동 생성한다.
+// PhotoBoardDaoImpl 객체 생성되는 것 확인
+// >> photoBoardServiceImpl ---> com.sun.proxy.$Proxy31 형태로 생성됨
+@EnableTransactionManagement
 
 // Spring IoC Container에서 사용할 Properties 파일 로딩
 @PropertySource("classpath:com/eomcs/lms/conf/jdbc.properties")

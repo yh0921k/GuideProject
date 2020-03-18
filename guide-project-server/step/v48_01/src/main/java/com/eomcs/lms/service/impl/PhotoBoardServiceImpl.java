@@ -1,7 +1,6 @@
 package com.eomcs.lms.service.impl;
 
 import java.util.List;
-import org.springframework.stereotype.Component;
 import com.eomcs.lms.dao.PhotoBoardDao;
 import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.domain.PhotoBoard;
@@ -9,6 +8,7 @@ import com.eomcs.lms.service.PhotoBoardService;
 import com.eomcs.sql.PlatformTransactionManager;
 import com.eomcs.sql.TransactionCallback;
 import com.eomcs.sql.TransactionTemplate;
+import com.eomcs.util.Component;
 
 @Component
 public class PhotoBoardServiceImpl implements PhotoBoardService {
